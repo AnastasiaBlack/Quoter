@@ -2,11 +2,9 @@ package myquote
 
 class QuoteController {
     static scaffold = Quote
-    static defaultAction = "home";
-//
-//    def index() {
-//        redirect(action: "home")
-//    }
+    static defaultAction = "home"
+    def quoteService
+
 
     def home() {
         def staticAuthor = "Me";
@@ -16,14 +14,15 @@ class QuoteController {
 
 
     def random() {
-        List<Quote> allQuotes = Quote.getAll();
-        Quote randomQuote
-        if (allQuotes.size() > 0) {
-            int randomIdx = new Random().nextInt(allQuotes.size())
-            randomQuote = allQuotes[randomIdx]
-        } else {
-            randomQuote = new Quote(author: "Alice", content: "We are all insane here.")
-        }
+        Quote randomQuote = quoteService.getRandomQuote()
         [quote: randomQuote]
+    }
+
+    def ajaxRandom(){
+        def randomQuote = quoteService.getRandomQuote()
+        render{
+            q(randomQuote.content)
+            p(randomQuote.author)
+        }
     }
 }
