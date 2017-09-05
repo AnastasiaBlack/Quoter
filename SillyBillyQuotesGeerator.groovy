@@ -1,6 +1,5 @@
 import myquote.*
 
-//println Quote.count()
 
 def authors = ["Mannie Nock", "Goodween Barrow"]
 def quoteParts = [["Time ", "waits for ", "no man"], 
@@ -24,3 +23,5 @@ def quote = createQuote(quoteParts, authors)
 
 println quote
 }
+
+println Quote.count()
